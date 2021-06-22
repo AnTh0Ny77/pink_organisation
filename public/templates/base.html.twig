@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="web/assets/favicon.ico" />
+    <title>Pink Organisation</title>
+    {% block stylesheets %}
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="public/web/css/styles.css" rel="stylesheet" />
+    <link href="public/web/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="public/web/carroussel/owl.carousel.min.css" rel="stylesheet" />
+    {% endblock %}
+
+
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" id="mainNav">
+        <div class="container">
+            <!-- <a class="navbar-brand js-scroll-trigger"  href="#pagetop" rel="noopener" target="_blank">
+                </a> -->
+                <a class="navbar-brand" style="border: none;" href="#page-top" ><img style="height: 45px;" class="img-fluid img-brand d-block mx-auto " src="public/web/assets/img/logo.svg"
+                        alt="..." /></a>
+                <!-- <a class="navbar-brand" href="#page-top" ><img src="public/web/assets/logo.png" alt="..." /></a> -->
+            {# <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            </button> #}
+            <div id="container-burger" class="d-block d-sm-none">
+                <svg class="ham hamRotate ham8" viewBox="0 0 100 100" width="60"
+                    onclick="this.classList.toggle('active')" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <path class="line top"
+                        d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
+                    <path class="line middle" d="m 30,50 h 40" />
+                    <path class="line bottom"
+                        d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
+                </svg>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#services">{{content[4].content|raw}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#presentation">{{content[5].content|raw}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">{{content[6].content|raw}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">{{content[7].content|raw}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contactForm">{{content[8].content|raw}}</a></li>
+                   
+                </ul>
+                {% if lng == 'fr' %}
+                <form class="mx-4" action="" method="POST">
+                    <input type="hidden" name="switch" value="en">
+                    <button class="btn border-0">
+                        <img style="width: 25px;" class="img-fluid img-brand  mx-auto " src="public/web/assets/img/en_US.svg"
+                            alt="..." />
+                    </button>
+                </form>
+                {% else %}
+                <form class="mx-4" action="switch" method="POST">
+                    <input type="hidden" name="switch" value="fr">
+                    <button class="btn border-0">
+                        <img style="width: 25px;" class="img-fluid img-brand  mx-auto " src="public/web/assets/img/en_Fr.svg"
+                            alt="..." />
+                    </button>
+                </form>
+                {% endif %}
+               
+            </div>
+          
+            
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+       
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                        <h2 class="section-heading text-uppercase">{{content[8].content|raw}}</h2>
+                    <h3 class="section-subheading ">{{content[2].content|raw}}</h3>
+                </div>
+
+                <form id="contactForm" >
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" type="text" placeholder="{{content[9].content|raw}} *"
+                                    data-sb-validations="required" />
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" type="email" placeholder="Email *"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" placeholder="Message *"
+                                    data-sb-validations="required"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
+                            type="submit">{{content[10].content|raw}}</button></div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright&copy;ABSystem</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% block javascripts %}
+  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <!-- Core theme JS-->
+    <script src="public/web/jquery.min.js"></script>
+    <script src="public/web/popper.js"></script>
+    <script src="public/web/js/scripts.js"></script>
+    <script src="public/web/carroussel/owl.carousel.min.js"></script>
+    <script src="public/web/carroussel/main.js"></script>
+    {% endblock %}
+</body>
+
+</html>
