@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+<!-- Portfolio Grid-->
+<section class="page-section mt-5 bg-dark" id="portfolio">
+
+    <div class="container mt-5">
+        <div class="text-center mt-5">
+            <h2 class="section-heading text-uppercase">{{content[categorie].content|raw}}</h2>
+        </div>
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center">
+                    {% for file in image_array %}
+                    
+                    {% if file |length > 4  %}
+                        <div class="col-lg-5 col-md-10 my-4 mx-2 portfolio-item">
+                            <a href="public/web/assets/img/{{categorie}}/{{file}}" class="thumbnail">
+                                <img src="public/web/assets/img/{{categorie}}/{{file}}" class="shadow img-fluid img-thumbnail" alt="Image 2" />
+                            </a>
+                        </div>
+                    {% endif %}
+                       
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+
+
+
+
+
+
+
+</section>
+
+
+
+{% endblock %}
+

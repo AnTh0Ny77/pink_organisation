@@ -18,6 +18,8 @@
     <link href="public/web/css/styles.css" rel="stylesheet" />
     <link href="public/web/css/bootstrap.min.css" rel="stylesheet" />
     <link href="public/web/carroussel/owl.carousel.min.css" rel="stylesheet" />
+
+    
     {% endblock %}
 
 
@@ -37,11 +39,10 @@
                 aria-label="Toggle navigation">
 
             </button> #}
-            <div id="container-burger" class="d-block d-sm-none">
-                <svg class="ham hamRotate ham8" viewBox="0 0 100 100" width="60"
-                    onclick="this.classList.toggle('active')" data-bs-toggle="collapse"
+            <div id="container-burger"   data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Toggle navigation" class="d-block d-sm-none">
+                <svg class="ham hamRotate ham8" onclick="this.classList.toggle('active')" viewBox="0 0 100 100" width="60">
                     <path class="line top"
                         d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
                     <path class="line middle" d="m 30,50 h 40" />
@@ -53,11 +54,16 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">{{content[4].content|raw}}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#presentation">{{content[5].content|raw}}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">{{content[6].content|raw}}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">{{content[7].content|raw}}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contactForm">{{content[8].content|raw}}</a></li>
+                    <li class="nav-item">
+
+                         <a class="nav-link " href="home">{{content[4].content|raw}}</a>
+                    </li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="portfolio">{{content[6].content|raw}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="references">{{content[7].content|raw}}</a></li>
+                    <li class="nav-item" >
+                        <a class="nav-link nav-close" href="contact">{{content[8].content|raw}}</a>
+                    </li>
                    
                 </ul>
                 {% if lng == 'fr' %}
@@ -153,6 +159,12 @@
     <script src="public/web/js/scripts.js"></script>
     <script src="public/web/carroussel/owl.carousel.min.js"></script>
     <script src="public/web/carroussel/main.js"></script>
+        <script>
+             let toggle_nav = function () 
+                 {
+                    $('.ham').toggleClass('active');
+                }
+        </script>
     {% endblock %}
 </body>
 

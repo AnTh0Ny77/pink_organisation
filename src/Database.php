@@ -53,4 +53,17 @@ class Database
       
         return $data;
     }
+
+
+    public function get_reference($pdo, $lng)
+    {
+        if ($lng == 'fr') {
+            $request = $pdo->query('SELECT  ref_fr  as content  FROM reference  ORDER BY  ref_fr ASC ');
+            $data = $request->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            $request = $pdo->query('SELECT  ref_en  as content  FROM reference  ORDER BY ref_en ASC ');
+            $data = $request->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $data;
+    }
 }

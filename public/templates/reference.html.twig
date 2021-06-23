@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+
+<!-- Portfolio Grid-->
+
+<section class="page-section mt-5 bg-dark" id="s">
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">{{content[1].content|raw}}</h2>
+        </div>
+
+    <ul class="list-group list-group-flush">
+       {% for ref in ref_list %}
+            <li class="list-group-item">{{ref.content}}</li>
+       {% endfor %}
+    </ul>
+
+    </div>
+</section>
+
+
+{% endblock %}
