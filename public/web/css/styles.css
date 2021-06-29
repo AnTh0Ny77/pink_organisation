@@ -11391,6 +11391,14 @@ section#contact form#contactForm :-ms-input-placeholder {
   height: 15%;
 }
 
+@media (max-width: 980px) 
+{ 
+  #container-burger
+  {
+    display: block !important;
+  }
+}
+
 .nav-link:hover
 {
   background-color: #272B30 !important;

@@ -41,7 +41,7 @@
             </button> #}
             <div id="container-burger"   data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation" class="d-block d-sm-none">
+                    aria-label="Toggle navigation" class="d-block d-md-none">
                 <svg class="ham hamRotate ham8" onclick="this.classList.toggle('active')" viewBox="0 0 100 100" width="60">
                     <path class="line top"
                         d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
@@ -93,39 +93,46 @@
     {% endblock %}
        
         <!-- Contact-->
-        <section class="page-section" id="contact">
+        <section class="page-section" id="contact" >
             <div class="container">
                 <div class="text-center">
                         <h2 class="section-heading text-uppercase">{{content[8].content|raw}}</h2>
                     <h3 class="section-subheading ">{{content[2].content|raw}}</h3>
                 </div>
+                {% if alert_mail %}
+                <div class="alert alert-success" role="alert">
+                   {{alert_mail}}
+                </div>
+                    
+                {% endif %}
 
-                <form id="contactForm" >
+                <form id="contactForm" action="contactform" method="POST">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <!-- Name input-->
-                                <input class="form-control" id="name" type="text" placeholder="{{content[9].content|raw}} *"
-                                    data-sb-validations="required" />
+                                <input class="form-control" id="name" name="name" type="text" minlength="3"  placeholder="{{content[9].content|raw}} *"
+                                    required/>
                             </div>
                             <div class="form-group">
                                 <!-- Email address input-->
-                                <input class="form-control" id="email" type="email" placeholder="Email *"
-                                    required />
+                                <input class="form-control" id="email" name="email" type="email" placeholder="Email *"
+ required />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
                                 <!-- Message input-->
-                                <textarea class="form-control" id="message" placeholder="Message *"
-                                    data-sb-validations="required"></textarea>
+                                <textarea class="form-control" id="message" name="message" placeholder="Message *"
+                                  minlength="15" required></textarea>
                             </div>
                         </div>
                     </div>
                    
                     <!-- Submit Button-->
-                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
-                            type="submit">{{content[10].content|raw}}</button></div>
+                    <div class="text-center" id="contact"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
+                            type="submit">{{content[10].content|raw}}</button>
+                    </div>
                 </form>
             </div>
         </section>
