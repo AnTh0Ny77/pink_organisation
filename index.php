@@ -180,7 +180,7 @@ switch($global_request)
 
                 //Recipients
                 $mail->setFrom('pink.organisation.mailer@gmail.com', 'Mailer');
-                $mail->addAddress('anthonybs.pro@gmail.com', 'Test send mail');     //Add a recipient
+                $mail->addAddress('caroline.randu@pink-organisation.com', 'Message depuis le site');     //Add a recipient
 
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
