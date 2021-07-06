@@ -22,7 +22,6 @@ $Pdo = $Database->DbConnect();
 $request = $_SERVER['REQUEST_URI'];
 
 
-
 //recup le get pour les adapter au routing :
 $get_request = explode('?', $request, 2);
 if (isset($get_request[1]))
@@ -30,7 +29,7 @@ if (isset($get_request[1]))
 else
     $get_data = "";
 
-$global_request = $get_request[0] . $get_data; 
+$global_request = $_SERVER['HTTP_HOST'] . $get_request[0] . $get_data; 
 
 
 if (empty($_SESSION)) 
@@ -42,7 +41,7 @@ if (empty($_SESSION))
 switch($global_request)
 {
 		
-	case '/pink/':
+	case $_SERVER['HTTP_HOST'].'':
 
         if (!isset($_SESSION['lng']))
             $_SESSION['lng'] = 'fr';
@@ -50,18 +49,22 @@ switch($global_request)
         if (!empty($_POST['switch']))
             $_SESSION['lng'] = $_POST['switch'];
            
-        $text_content = $Database->get_content($Pdo, $_SESSION['lng']); 
+        $text_content = $Database->get_content($Pdo, $_SESSION['lng']);
+
+        $dir = __DIR__ . '/public/web/assets/img/Accueil/';
+        $carroussel_pic = scandir($dir);
 
         echo $twig->render(
             'accueil.html.twig', 
             [
                 'content' => $text_content ,
-                'lng' => $_SESSION['lng']
+                'lng' => $_SESSION['lng'] , 
+                'carroussel_pic' => $carroussel_pic
             ]
         );
         break;
 
-    case '/pink/portfolio':
+    case $_SERVER['HTTP_HOST'].'/portfolio':
 
         if (!isset($_SESSION['lng']))
             $_SESSION['lng'] = 'fr';
@@ -80,7 +83,7 @@ switch($global_request)
         );
         break;
 
-    case '/pink/references':
+    case $_SERVER['HTTP_HOST'].'/references':
 
         if (!isset($_SESSION['lng']))
         $_SESSION['lng'] = 'fr';
@@ -101,7 +104,7 @@ switch($global_request)
         );
         break;
 
-    case '/pink/galerie'.$get_data:
+    case $_SERVER['HTTP_HOST'].'/galerie'.$get_data:
 
         if (!isset($_SESSION['lng']))
         $_SESSION['lng'] = 'fr';
@@ -113,9 +116,9 @@ switch($global_request)
 
         $data = $_GET['data'];
         $dir = __DIR__.'/public/web/assets/img/'.$data;
-        $files = scandir($dir);
+        $files = scandir($dir );
         
-      
+     
         echo $twig->render(
             'galerie.html.twig',
             [
@@ -127,7 +130,7 @@ switch($global_request)
         );
         break;
 
-    case '/pink/contact':
+    case $_SERVER['HTTP_HOST'].'/contact':
 
         if (!isset($_SESSION['lng']))
         $_SESSION['lng'] = 'fr';
@@ -147,9 +150,10 @@ switch($global_request)
         );
         break;
 
-    case '/pink/contactform':
+    case $_SERVER['HTTP_HOST'].'/contactform':
 
         $alert_mail = false ;
+        $alert_double = false ;
         if (!isset($_SESSION['lng']))
         $_SESSION['lng'] = 'fr';
 
@@ -157,6 +161,8 @@ switch($global_request)
         $_SESSION['lng'] = $_POST['switch'];
 
         $text_content = $Database->get_content($Pdo, $_SESSION['lng']);
+        $dir = __DIR__ . '/public/web/assets/img/Accueil/';
+        $carroussel_pic = scandir($dir);
 
         if (!empty($_POST['name']) && !empty($_POST['email']) && $_SESSION['alert_mail'] != 1 )
          {
@@ -189,13 +195,16 @@ switch($global_request)
            
             $_SESSION['alert_mail'] = 1 ;
         }
+        
+       
 
         echo $twig->render(
             'accueil.html.twig',
             [
                 'content' => $text_content,
                 'lng' => $_SESSION['lng'] , 
-                'alert_mail' => $alert_mail 
+                'alert_mail' => $alert_mail ,
+                'carroussel_pic' => $carroussel_pic
                 
             ]
         );
@@ -203,7 +212,7 @@ switch($global_request)
   
 	default:
 
-		header('HTTP/1.0 404 not found');
+		// header('HTTP/1.0 404 not found');
 
         if (!isset($_SESSION['lng']))
             $_SESSION['lng'] = 'fr';
@@ -212,12 +221,29 @@ switch($global_request)
             $_SESSION['lng'] = $_POST['switch'];
 
         $text_content = $Database->get_content($Pdo, $_SESSION['lng']);
+        $accroche = [];
+
+        for ($i=0; $i < 3 ; $i++) 
+        {
+            foreach ($text_content as  $value) {
+                if ($value->name_field == 'w_text') {
+                    array_push($accroche, $value->content);
+                }
+            }
+        }
+        
+        
+    
+        $dir = __DIR__ . '/public/web/assets/img/Accueil/';
+        $carroussel_pic = scandir($dir);
         
         echo $twig->render(
             'accueil.html.twig',[
 
                 'content' => $text_content,
-                'lng' => $_SESSION['lng']
+                'lng' => $_SESSION['lng'] ,
+                'carroussel_pic' => $carroussel_pic , 
+                'accroche' => $accroche
             ]
            
 
